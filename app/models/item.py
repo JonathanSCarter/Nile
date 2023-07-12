@@ -15,3 +15,5 @@ class Item(db.Model):
   img = db.Column(db.String(400))
   description = db.Column(db.String(1000))
   category = db.Column(db.String(100))
+
+  cart = db.relationship("Cart", back_populates="item")
