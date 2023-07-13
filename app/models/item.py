@@ -17,3 +17,13 @@ class Item(db.Model):
   category = db.Column(db.String(100))
 
   cart = db.relationship("Cart", back_populates="item")
+
+  @property
+
+  def to_dict(self):
+    return {
+      'id': self.id,
+      'seller': self.seller,
+      "name": self.name,
+      "description": self.description
+    }

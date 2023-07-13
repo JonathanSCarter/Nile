@@ -7,7 +7,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 auth_routes = Blueprint('auth', __name__)
 
 
-def validation_errors_to_error_messages(validation_errors):
+def validation_errors_to_error_messages(validation_errors: list):
   """
   Function that turns the WTForms validation errors into a list
   """
@@ -34,11 +34,8 @@ def login():
   Logs a user in
   """
   form = LoginForm()
-  # Get the csrf_token from the request cookie and put it into the
-  # form manually to validate_on_submit can be used
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    # Add the user to the session, we are logged in!
     user = User.query.filter(User.email == form.data['email']).first()
     login_user(user)
     return user.to_dict()
@@ -60,10 +57,9 @@ def sign_up():
   Creates a new user and logs them in
   """
   form = SignUpForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
+  form['csrf_token'].data = request.cookies.get('csrf_token')
   if form.validate_on_submit():
     user = User(
-      username=form.data['username'],
       email=form.data['email'],
       password=form.data['password']
       )
