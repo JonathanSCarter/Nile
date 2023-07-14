@@ -14,6 +14,7 @@ const removeUser = () => ({
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
+	console.log('auth');
 	const response = await fetch("/api/auth/", {
 		headers: {
 			"Content-Type": "application/json",

@@ -26,32 +26,30 @@ def post_items():
   """
   Takes in a request, creates an item, and then returns the item as a dictionary
   """
-  if not current_user.is_authenticated:
-    return {'errors': ['Unauthorized']}
-
-  form = ItemForm()
-  form["csrf_token"].data = request.cookies.get("csrf_token")
-
-  if form.validate_on_submit():
-    item = Item()
-    form.populate_obj(item)
-    item.seller = current_user.first_name
-    db.session.add(item)
-    db.session.commit()
-    return item.to_dict
-  return {"errors": form.errors}, 400
+  if current_user.is_authenticated:
+    form = ItemForm()
+    form["csrf_token"].data = request.cookies.get("csrf_token")
+    print(form['csrf_token'].data)
+    if form.validate_on_submit():
+      item = Item()
+      form.populate_obj(item)
+      item.seller = current_user.first_name
+      db.session.add(item)
+      db.session.commit()
+      return item.to_dict
+    return {"errors": form.errors}, 400
+  return {'errors': ['Unauthorized']}
 
 @item_routes.route('/<int:id>/delete')
 def delete_item(id):
   """
   Takes in an id from the url and deletes the item
   """
-  if not current_user.is_authenticated:
-    return {'errors': ['Unauthorized']}
-  item = Item.query.get(id)
-  print(item.seller)
-  print(current_user.first_name)
-  if not item.seller == current_user.first_name:
-    return {'errors': ['Unauthorized']}
-  db.session.delete(item)
-  return {"message": "Successfully deleted"}
+  if current_user.is_authenticated:
+    item = Item.query.get(id)
+    print(item.seller)
+    print(current_user.first_name)
+    if item.seller == current_user.first_name:
+      db.session.delete(item)
+      return {"message": "Successfully deleted"}
+  return {'errors': ['Unauthorized']}
