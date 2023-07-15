@@ -1,41 +1,48 @@
 import React, {useState} from 'react'
 import { thunkPostItem } from '../../store/item'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 
 function ItemForm(){
-  const dispatch = useDispatch()
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [discount, setDiscount] = useState('')
-  const [img, setImg] = useState('')
-  const [description, setDescription] = useState('')
-  const [category, setCategory] = useState('')
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [discount, setDiscount] = useState('');
+  const [image, setImage] = useState(null);
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [errors, setErrors] = useState({});
+  const user = useSelector(state => state.session.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('test');
-    const data = {
-      "name":name,
-      "price":price,
-      "discount":discount,
-      "img":img,
-      "description":description,
-      "category":category
-    }
-    console.log(data, 'this is my data object');
-    const res = await dispatch(thunkPostItem(data))
+    setErrors({});
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("discount", discount);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("seller_id", user.id);
+    const res = await dispatch(thunkPostItem(formData));
 
-    console.log(res);
+    if(res.errors){
+      setErrors(res.errors);
+    } else {
+      history.push(`/items/${res.id}`)
+    }
   }
 
   return(
-    <form onSubmit={(e) => handleSubmit(e)}>
-    Name<input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>
-    Price<input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>
-    Discount<input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>
-    Image<input placeholder='img' value={img} onChange={(e) => setImg(e.target.value)}></input>
-    Description<input placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)}></input>
-    Category<input placeholder='category' value={category} onChange={(e) => setCategory(e.target.value)}></input>
+    <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+    Name<input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>{errors.name}
+    Price<input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>{errors.price}
+    Discount<input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>{errors.discount}
+    Image<input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])}></input>{errors.image}
+    Description<input placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)}></input>{errors.description}
+    Category<input placeholder='category' value={category} onChange={(e) => setCategory(e.target.value)}></input>{errors.category}
     <button type='submit'>Create Item</button>
     </form>
   )

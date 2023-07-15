@@ -61,7 +61,7 @@ def sign_up():
   if form.validate_on_submit():
     user = User(
       email=form.data['email'],
-      password=form.data['password']
+      password=form.data['password'] #Need to add first/last name
       )
     db.session.add(user)
     db.session.commit()

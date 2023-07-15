@@ -1,17 +1,17 @@
 //Types
 const GET_ITEMS = '/items/GET_ITEMS'
-const POST_ITEM = '/items/POST_ITEM'
+
+const GET_ITEM = '/items/GET_ITEM'
 
 //ACTIONS
 const actionGetItems = (items) => ({
   type: GET_ITEMS,
   payload: items
 })
-const actionPostItem = (item) => ({
-  type: POST_ITEM,
+const actionGetItem = (item) => ({
+  type: GET_ITEM,
   payload: item
 })
-
 
 //THUNK
 export const thunkGetItems = () => async (dispatch) => {
@@ -21,19 +21,22 @@ export const thunkGetItems = () => async (dispatch) => {
     dispatch(actionGetItems(data))
   }
 }
-export const thunkPostItem = (item) => async (dispatch) => {
-  console.log('this is a triumph');
-  console.log(item, 'this is my item');
-  console.log("is still still working?")
-  const res = await fetch("/api/items/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(item)
-})
-console.log(res, 'this is my res');
+
+export const thunkGetItem = (id) => async (dispatch) => {
+  const res = await fetch(`/api/items/${id}`)
   if (res.ok) {
     const data = await res.json();
-    dispatch(actionPostItem(data))
+    dispatch(actionGetItem(data))
+  }
+}
+
+export const thunkPostItem = (item) => async (dispatch) => {
+  const res = await fetch("/api/items/", {
+    method: "POST",
+    body: item
+})
+  if (res.ok) {
+    const data = await res.json();
     return data
   }
   else {
@@ -42,17 +45,62 @@ console.log(res, 'this is my res');
   }
 }
 
+export const thunkPutItem = (item, id) => async (dispatch) => {
+  const res = await fetch(`/api/items/${id}/update`, {
+    method: "POST",
+    body: item
+})
+  if (res.ok) {
+    const data = await res.json();
+    return data
+  }
+  else {
+    const errorData = await res.json();
+    return errorData
+  }
+}
+
+export const thunkPutItemImage = (item, id) => async (dispatch) => {
+  const res = await fetch(`/api/items/${id}/update/image`, {
+    method: "POST",
+    body: item
+})
+  if (res.ok) {
+    const data = await res.json();
+    return data
+  }
+  else {
+    const errorData = await res.json();
+    return errorData
+  }
+}
+
+export const thunkDeleteItem = (id) => async (dispatch) => {
+  const res = await fetch(`/api/items/${id}/delete`)
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(actionGetItem(data))
+  }
+}
+
 //REDUX
 const initialState = {allItems: {}, singleItem: {}}
 
 const items = (state = initialState, action) => {
   switch(action.type){
-    case GET_ITEMS:
+    case GET_ITEMS: {
       const newState = {...state, allItems: {}}
       action.payload.forEach(item => newState.allItems[item.id] = item)
       return newState
-    case POST_ITEM:
-      return state
+    }
+    case GET_ITEM:{
+      const newState = {...state, singleItem: {}}
+      newState.singleItem = action.payload
+      return newState
+    }
+    // case POST_ITEM:{
+    //   return state
+    // }
     default:
       return state
   }

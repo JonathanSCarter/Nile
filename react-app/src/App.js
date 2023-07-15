@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ItemSearch from "./components/ItemSearch";
 import ItemForm from "./components/CreateItemForm";
+import ItemPage from "./components/ItemPage";
+import UpdateItemForm from "./components/UpdateItemForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +29,12 @@ function App() {
           </Route>
           <Route path='/create'>
             <ItemForm />
+          </Route>
+          <Route path='/items/:id/update'>
+            <UpdateItemForm />
+          </Route>
+          <Route path='/items/:id'>
+            <ItemPage />
           </Route>
           <Route path="/">
             <ItemSearch />
