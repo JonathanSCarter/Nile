@@ -4,6 +4,7 @@ import items, { thunkGetItem } from "../../store/item";
 import { useParams, useHistory } from "react-router-dom";
 import DeleteItem from '../DeleteItem'
 import OpenModalButton from "../OpenModalButton";
+import { thunkAddToCart } from "../../store/cart";
 
 function ItemPage(){
   const history = useHistory()
@@ -22,6 +23,19 @@ function ItemPage(){
     history.push(`/items/${id}/update`)
   }
 
+  const handleAdd = () => {
+    const payload = {
+      "item_id": id,
+      "count": 1
+    }
+    dispatch(thunkAddToCart(payload))
+  }
+
+  const handleBuy = async () => {
+    await handleAdd()
+    history.push('/cart')
+  }
+
   return (
     <div>
       <div>{item.image}</div>
@@ -31,7 +45,7 @@ function ItemPage(){
       <div>{item.seller}</div>
       <div>{item.price}</div>
       <div>{item.category}</div>
-      {isSeller &&
+      {user && isSeller ?
       <>
         <OpenModalButton
           buttonText="Delete Item"
@@ -39,6 +53,11 @@ function ItemPage(){
           />
         <button onClick={handleUpdate}>Update Item</button>
           </>
+       :
+       <>
+        <button onClick={handleAdd}>Add to Cart</button>
+        <button onClick={handleBuy}>Buy Now</button>
+       </>
       }
     </div>
   )

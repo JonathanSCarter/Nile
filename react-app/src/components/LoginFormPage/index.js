@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import './LoginForm.css';
 
 function LoginFormPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -20,6 +21,14 @@ function LoginFormPage() {
       setErrors(data);
     }
   };
+
+  const handleDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  }
 
   return (
     <>
@@ -50,6 +59,8 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <button onClick={handleDemo}>Log in as a Demo User</button>
+      <h2>Or, sign up here <button onClick={() => history.push('/signup')}>Sign Up</button></h2>
     </>
   );
 }

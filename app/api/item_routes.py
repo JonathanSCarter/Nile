@@ -4,6 +4,7 @@ from flask_login import current_user
 from app.forms.item_form import ItemForm
 from app.forms.image_form import ImageForm
 from app.api.s3_helpers import ( upload_file_to_s3, get_unique_filename)
+
 item_routes = Blueprint('items', __name__)
 
 @item_routes.route('/')
@@ -46,7 +47,7 @@ def post_items():
         db.session.add(item)
         db.session.commit()
         return item.to_dict
-      return {"error": "Image upload failed"}, 400
+      return {"errors": "Image upload failed"}, 400
     return {"errors": form.errors}, 400
   return {'errors': ['Unauthorized']}
 
@@ -89,7 +90,7 @@ def update_image(id):
           print(item.image, 'this is the item image')
           db.session.commit()
           return item.to_dict
-        return {"error": "Image upload failed"}, 400
+        return {"errors": "Image upload failed"}, 400
       return {"errors": form.errors}, 400
   return {'errors': ['Unauthorized']}
 
@@ -100,7 +101,7 @@ def delete_item(id):
   """
   if current_user.is_authenticated:
     item = Item.query.get(id)
-    if item.seller == current_user.first_name:
+    if item.seller_id == current_user.id:
       db.session.delete(item)
       db.session.commit()
       return {"message": "Successfully deleted"}

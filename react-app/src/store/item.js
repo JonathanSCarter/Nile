@@ -1,4 +1,4 @@
-//Types
+//TYPES
 const GET_ITEMS = '/items/GET_ITEMS'
 
 const GET_ITEM = '/items/GET_ITEM'
@@ -41,6 +41,7 @@ export const thunkPostItem = (item) => async (dispatch) => {
   }
   else {
     const errorData = await res.json();
+    console.log(errorData);
     return errorData
   }
 }

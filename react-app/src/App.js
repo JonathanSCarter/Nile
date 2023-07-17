@@ -9,6 +9,7 @@ import ItemSearch from "./components/ItemSearch";
 import ItemForm from "./components/CreateItemForm";
 import ItemPage from "./components/ItemPage";
 import UpdateItemForm from "./components/UpdateItemForm";
+import CartPage from "./components/CartPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path='/create'>
             <ItemForm />
+          </Route>
+          <Route path='/cart'>
+            <CartPage />
           </Route>
           <Route path='/items/:id/update'>
             <UpdateItemForm />
