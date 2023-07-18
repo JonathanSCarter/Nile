@@ -6,7 +6,7 @@ def seed_users():
   demo = User(
     first_name='Demo', last_name='User', email='demo@aa.io', password='password')
   amazon = User(
-    first_name = 'Amazon', last_name='Company', email='amazon@aa.io', password='password'
+    first_name = 'Nile', last_name='Company', email='nile@aa.io', password='password'
   )
 
 

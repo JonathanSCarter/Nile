@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormPage from "../LoginFormPage";
@@ -36,21 +36,18 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = user ? "profile-dropdown" + (showMenu ? "" : " hidden") : "profile-dropdown-logged-out" + (showMenu ? "" : " hidden") ;
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className="" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <p>Hello, {user.first_name} {user.last_name}</p>
+            <button onClick={handleLogout}>Log Out</button>
           </>
         ) : (
           <>

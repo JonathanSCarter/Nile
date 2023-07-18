@@ -41,7 +41,6 @@ export const thunkPostItem = (item) => async (dispatch) => {
   }
   else {
     const errorData = await res.json();
-    console.log(errorData);
     return errorData
   }
 }

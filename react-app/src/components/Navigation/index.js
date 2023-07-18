@@ -42,28 +42,26 @@ function Navigation({ isLoaded }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <ul>
-        <li>
-          <NavLink exact to="/">
-            Home
+    <div className="navbar">
+      <button className="logo-in-navbar">
+          <NavLink exact to="/" className='logo'>
+            Nile
           </NavLink>
-        </li>
+        </button>
+
+        <div className="user-links">
         {isLoaded && useProfile && (
-          <li>
             <ProfileButton user={sessionUser} />
-          </li>
         )}
-      </ul>
       {sessionUser && (
         <>
           <button>
-            <NavLink exact to="/create">
+            <NavLink className='header-link' exact to="/create">
               Create Item
             </NavLink>
           </button>
           <button>
-            <NavLink exact to='/history'>
+            <NavLink className='header-link' exact to='/history'>
               Order History
             </NavLink>
           </button>
@@ -71,10 +69,11 @@ function Navigation({ isLoaded }) {
             buttonText="View Cart"
             onItemClick={closeMenu}
             modalComponent={<CartModal />}
-          />
-        </>
-      )}
-    </>
+            />
+            </>
+          )}
+          </div>
+    </div>
   );
 }
 

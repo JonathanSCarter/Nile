@@ -1,5 +1,47 @@
 .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  top: 60px;
+  right: 400px;
+  padding-left: 0px;
+}
+
+.profile-dropdown-logged-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  top: 60px;
+  right: 20px;
+  padding-left: 0px;
+}
+
+.navbar .profile-dropdown button {
+  color: black;
+  width: 150px;
+  height: 50px;
+  margin: none;
+  padding: none;
+  text-decoration: none;
+}
+
+.navbar .profile-dropdown-logged-out button {
+  color: black;
+  width: 150px;
+  height: 50px;
+  margin: none;
+  padding: none;
+  text-decoration: none;
 }
 
 .hidden {
@@ -7,7 +49,64 @@
 }
 
 img {
-  width: 400px;
-  height: 400px;
+  width: 150px;
+  height: 150px;
 }
 
+.navbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100px;
+  margin-top: 0px;
+  padding-top: 0px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: navy;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  width: 150px;
+  height: 100px;
+  text-decoration: none;
+  color: white;
+  background-color: none;
+  border: none;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100px;
+  text-decoration: none;
+  color: white;
+  font-size: large;
+  cursor: pointer;
+}
+
+.user-links {
+  display: flex;
+}
+
+.header-link {
+  text-decoration: none;
+  color: white;
+}
+
+.profile-button {
+  background-color: white;
+}
