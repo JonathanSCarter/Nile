@@ -8,9 +8,10 @@ def seed_users():
   amazon = User(
     first_name = 'Amazon', last_name='Company', email='amazon@aa.io', password='password'
   )
-  
 
-  db.session.add(demo, amazon)
+
+  db.session.add(demo)
+  db.session.add(amazon)
 
   db.session.commit()
 
