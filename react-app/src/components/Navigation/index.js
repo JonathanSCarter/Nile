@@ -62,6 +62,11 @@ function Navigation({ isLoaded }) {
               Create Item
             </NavLink>
           </button>
+          <button>
+            <NavLink exact to='/history'>
+              Order History
+            </NavLink>
+          </button>
           <OpenModalButton
             buttonText="View Cart"
             onItemClick={closeMenu}

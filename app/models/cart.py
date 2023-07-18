@@ -11,6 +11,7 @@ class Cart(db.Model):
   item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), nullable=False)
   count = db.Column(db.Integer, nullable=False)
   purchased = db.Column(db.Boolean, nullable=False, default=False, index=True)
+  purchased_at = db.Column(db.DateTime, default=None, index=True)
 
   user = db.relationship("User", back_populates="cart")
   item = db.relationship("Item", back_populates="cart")
@@ -28,5 +29,6 @@ class Cart(db.Model):
         'image': self.item.image,
         'price': self.item.price,
         'discount': self.item.discount
-      }
+      },
+      'purchased_at': self.purchased_at
     }

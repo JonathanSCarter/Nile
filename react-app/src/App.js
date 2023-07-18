@@ -10,6 +10,8 @@ import ItemForm from "./components/CreateItemForm";
 import ItemPage from "./components/ItemPage";
 import UpdateItemForm from "./components/UpdateItemForm";
 import CartPage from "./components/CartPage";
+import OrderHistory from "./components/OrderHistory";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,22 +24,25 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/create'>
+          <Route path="/create">
             <ItemForm />
           </Route>
-          <Route path='/cart'>
+          <Route path="/cart">
             <CartPage />
           </Route>
-          <Route path='/items/:id/update'>
+          <Route path="/history">
+            <OrderHistory />
+          </Route>
+          <Route path="/items/:id/update">
             <UpdateItemForm />
           </Route>
-          <Route path='/items/:id'>
+          <Route path="/items/:id">
             <ItemPage />
           </Route>
           <Route path="/">

@@ -37,7 +37,7 @@ function ItemForm(){
 
   return(
     <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
-    Name<input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>{errors.name}
+    <label>Name</label><input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>{errors.name}
     Price<input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>{errors.price}
     Discount<input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>{errors.discount}
     Image<input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])}></input>{errors.image}

@@ -1,9 +1,16 @@
 //TYPES
 const GET_CART = 'carts/GET_CART'
+const GET_OLD_CART = 'carts/GET_OLD_CART'
+
 
 //ACTIONS
 const actionGetCart = (carts) => ({
   type: GET_CART,
+  payload: carts
+})
+
+const actionGetOldCart = (carts) => ({
+  type: GET_OLD_CART,
   payload: carts
 })
 
@@ -37,7 +44,7 @@ export const thunkUpdateCount = (id, count) => async (dispatch) => {
 }
 
 export const thunkPurchaseCart = () => async (dispatch) => {
-  const res = await fetch(`/api/carts/purchase`)
+  fetch(`/api/carts/purchase`)
 }
 
 export const thunkDeleteCart = (id) => async (dispatch) => {
@@ -48,17 +55,29 @@ export const thunkDeleteCart = (id) => async (dispatch) => {
   }
 }
 
+export const thunkGetPurchases = () => async (dispatch) => {
+  const res = await fetch('/api/carts/purchased')
+  if(res.ok) {
+    const data = await res.json();
+    dispatch(actionGetOldCart(data))
+  }
+}
+
 //REDUX
-const initialState = {cartItems: {}}
+const initialState = {cartItems: {}, oldCartItems: {}}
 
 const cart = (state = initialState, action) => {
   switch(action.type){
     case GET_CART: {
-      const newState = {cartItems: {}}
+      const newState = {...state, cartItems: {}}
       action.payload.forEach(cartItem => newState.cartItems[cartItem.id] = cartItem)
       return newState
     }
-
+    case GET_OLD_CART: {
+      const newState = {...state, oldCartItems: {}}
+      action.payload.forEach(cartItem => newState.oldCartItems[cartItem.id] = cartItem)
+      return newState
+    }
     default:
       return state
   }
