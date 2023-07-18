@@ -11,7 +11,7 @@ function ItemSearch(){
     dispatch(thunkGetItems());
   }, [])
 
-  const filteredItems = normalizedItems.filter(item => item.name.includes(query));
+  const filteredItems = normalizedItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
   console.log(filteredItems);
   return (
     <>
