@@ -12,10 +12,9 @@ function OrderHistory(){
     setNormalizedCarts([...Object.values(carts)])
   }, [carts])
 
-
   useEffect(() => {
-    dispatch(thunkGetPurchases)
-  })
+    dispatch(thunkGetPurchases())
+  }, [])
 
   return(
     <>

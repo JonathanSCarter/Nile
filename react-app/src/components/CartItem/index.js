@@ -24,6 +24,7 @@ function CartItem({cartItem}){
 
   return(
     <>
+    <img src={cartItem.item.image} alt="Item Image" />
     <div>{cartItem.item.name}</div>
     <label>Quantity</label>
     <select onChange={handleUpdate} value={count}>

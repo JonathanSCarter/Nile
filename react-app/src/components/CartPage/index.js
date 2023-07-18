@@ -14,17 +14,16 @@ function CartPage(){
   }
 
   useEffect(() => {
-    setPrice(normalizedCartItems.reduce((acc, cartItem) => acc + cartItem.item.price * cartItem.count, 0))
+    setPrice(normalizedCartItems.reduce((acc, cartItem) => acc + (cartItem.item.price * cartItem.count - cartItem.item.price * cartItem.count * (cartItem.item.discount / 100)), 0).toFixed(2));
   }, [normalizedCartItems])
 
   useEffect(() => {
-    dispatch(thunkGetCart())
+    dispatch(thunkGetCart());
   }, [])
 
   useEffect(() => {
-    setNormalizedCartItems([...Object.values(cartItems)])
+    setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
-console.log(normalizedCartItems);
   return(
     <>
     {

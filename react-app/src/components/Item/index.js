@@ -14,7 +14,7 @@ function Item({item}){
   console.log(item);
   return(
     <div onClick={handleSelect}>
-      <div>{item.image}</div>
+      <img src={item.image} alt="Item Image" />
       <div>{item.name}</div>
       <div>{item.rating}</div>
       <div>{item.price}</div>

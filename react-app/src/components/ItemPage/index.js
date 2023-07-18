@@ -38,13 +38,14 @@ function ItemPage(){
 
   return (
     <div>
-      <div>{item.image}</div>
-      <div>{item.name}</div>
-      <div>{item.rating}</div>
-      <div>{item.description}</div>
-      <div>{item.seller}</div>
-      <div>{item.price}</div>
-      <div>{item.category}</div>
+      <img src={item.image} alt="Item Image" />
+      <p>{item.name}</p>
+      <label>Rating</label><p>{item.rating}</p>
+      <p>{item.description}</p>
+      <p>{item.seller}</p>
+      <label>List Price</label><p>{item.price}</p>
+      <label>Price after Discount</label><p>{(item.price - item.price * (item.discount / 100)).toFixed(2)}</p>
+      <p>{item.category}</p>
       {user && isSeller ?
       <>
         <OpenModalButton
