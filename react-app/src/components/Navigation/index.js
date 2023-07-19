@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import CartModal from "../CartModal";
 import OpenModalButton from "../OpenModalButton";
+import { thunkGetQueriedItems, thunkGetItems } from "../../store/item";
 
 function Navigation({ isLoaded }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
 	const ulRef = useRef();
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
-
+  const [query, setQuery] = useState('');
   const { pathname } = useLocation();
   const route = pathname.split("/")[1];
   const [useProfile, setUseProfile] = useState(true);
@@ -41,14 +44,25 @@ function Navigation({ isLoaded }) {
 
   const closeMenu = () => setShowMenu(false);
 
+  const handleSearch = () => {
+    dispatch(thunkGetQueriedItems(query)).then(() => {
+      history.push('/');
+    });
+  }
+
+  const handleItems = () => {
+    dispatch(thunkGetItems());
+  }
+
   return (
     <div className="navbar">
-      <button className="logo-in-navbar">
+      <button className="logo-in-navbar" onClick={handleItems}>
           <NavLink exact to="/" className='logo'>
             Nile
           </NavLink>
         </button>
-
+        <input placeholder='search' value={query} onChange={(e) => setQuery(e.target.value)}></input>
+        <button onClick={handleSearch}>Search</button>
         <div className="user-links">
         {isLoaded && useProfile && (
             <ProfileButton user={sessionUser} />

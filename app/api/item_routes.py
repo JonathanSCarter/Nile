@@ -24,6 +24,14 @@ def get_item(id):
   item = Item.query.get(id)
   return item.to_dict
 
+@item_routes.route('/query/<string:query>')
+def get_queried_items(query):
+  """
+  Gets all items that fulfill the query
+  """
+  items = Item.query.filter(Item.name.ilike(f"%{query}%")).all()
+  return [item.to_dict for item in items]
+
 @item_routes.route('/', methods=['POST'])
 def post_items():
   """

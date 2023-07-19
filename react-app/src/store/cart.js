@@ -23,6 +23,8 @@ export const thunkGetCart = () => async (dispatch) => {
   }
 }
 
+
+
 export const thunkAddToCart = (payload) => async (dispatch) => {
   fetch('/api/carts/', {
     method: "POST",

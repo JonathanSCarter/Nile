@@ -22,6 +22,15 @@ export const thunkGetItems = () => async (dispatch) => {
   }
 }
 
+export const thunkGetQueriedItems = (query) => async (dispatch) => {
+  const res = await fetch(`/api/items/query/${query}`)
+  if (res.ok) {
+    const data = await res.json();
+    console.log(data);
+    dispatch(actionGetItems(data))
+  }
+}
+
 export const thunkGetItem = (id) => async (dispatch) => {
   const res = await fetch(`/api/items/${id}`)
   if (res.ok) {

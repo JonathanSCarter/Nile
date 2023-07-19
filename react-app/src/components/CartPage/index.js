@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import { thunkPurchaseCart } from "../../store/cart";
-
+import './CartPage.css'
 function CartPage(){
   const dispatch = useDispatch()
   const cartItems = useSelector(state => state.cart.cartItems)
@@ -25,14 +25,17 @@ function CartPage(){
     setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
   return(
-    <>
+    <div className="cart-page">
+      <div className="cart-holder">
     {
       normalizedCartItems.map((cartItem) => {
         return <CartItem cartItem={cartItem}/>
       })
     }
-    <button onClick={handlePurchase}>Buy Now ${price}</button>
-    </>
+    </div>
+
+    <button className='purchase-button' onClick={handlePurchase}>Buy Now ${price}</button>
+    </div>
   )
 }
 
