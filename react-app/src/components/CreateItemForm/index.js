@@ -29,6 +29,7 @@ function ItemForm(){
     const res = await dispatch(thunkPostItem(formData));
 
     if(res.errors){
+      console.log(res.errors);
       setErrors(res.errors);
     } else {
       history.push(`/items/${res.id}`)
