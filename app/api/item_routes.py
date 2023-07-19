@@ -106,5 +106,6 @@ def delete_item(id):
     if item.seller_id == current_user.id:
       db.session.delete(item)
       db.session.commit()
-      return {"message": "Successfully deleted"}
+      items = Item.query.all()
+      return [item.to_dict for item in items]
   return {'errors': ['Unauthorized']}
