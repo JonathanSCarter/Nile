@@ -1,8 +1,9 @@
 .cart-holder {
   display: flex;
+  flex-direction: column;
   margin-left: 200px;
   margin-right: 200px;
-  flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .purchase-button {

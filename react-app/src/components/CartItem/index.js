@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { thunkGetCart, thunkUpdateCount } from '../../store/cart';
 import { thunkDeleteCart } from '../../store/cart';
-
+import './CartItem.css'
 function CartItem({cartItem}){
   const dispatch = useDispatch()
   const [count, setCount] = useState(cartItem.count)
@@ -16,7 +16,7 @@ function CartItem({cartItem}){
   }
 
 
-  
+
   const handleDelete = () => {
     dispatch(thunkDeleteCart(cartItem.id))
   }
@@ -26,7 +26,7 @@ function CartItem({cartItem}){
   }, [cartItem])
 
   return(
-    <>
+    <div className='cart-item'>
     <img src={cartItem.item.image} alt="Item Image" />
     <div>{cartItem.item.name}</div>
     <label>Quantity</label>
@@ -43,7 +43,7 @@ function CartItem({cartItem}){
         <option value='10'>10</option>
       </select>
       <button onClick={handleDelete}>Delete Item From Cart</button>
-    </>
+    </div>
   )
 }
 
