@@ -35,6 +35,7 @@ def post_items():
       image = form.data.get("image")
       image.filename = get_unique_filename(image.filename)
       upload = upload_file_to_s3(image)
+      print(upload, 'This is my upload ~~~~~~~~~~~~~~~~~')
       if "url" in upload:
         item = Item()
         item.category = form.data.get("category")
