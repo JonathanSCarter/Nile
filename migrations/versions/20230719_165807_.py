@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a6d1384c2880
+Revision ID: cb7b399d3f88
 Revises: 
-Create Date: 2023-07-17 17:12:33.396190
+Create Date: 2023-07-19 16:58:07.708471
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a6d1384c2880'
+revision = 'cb7b399d3f88'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,6 +41,18 @@ def upgrade():
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('purchases',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('count', sa.Integer(), nullable=False),
+    sa.Column('purchased_at', sa.DateTime(), nullable=True),
+    sa.Column('item_name', sa.String(length=200), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    with op.batch_alter_table('purchases', schema=None) as batch_op:
+        batch_op.create_index(batch_op.f('ix_purchases_purchased_at'), ['purchased_at'], unique=False)
+
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -66,6 +78,10 @@ def downgrade():
         batch_op.drop_index(batch_op.f('ix_carts_purchased'))
 
     op.drop_table('carts')
+    with op.batch_alter_table('purchases', schema=None) as batch_op:
+        batch_op.drop_index(batch_op.f('ix_purchases_purchased_at'))
+
+    op.drop_table('purchases')
     op.drop_table('items')
     op.drop_table('users')
     # ### end Alembic commands ###

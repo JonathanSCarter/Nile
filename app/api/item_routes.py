@@ -3,6 +3,7 @@ from app.models import Item, db
 from flask_login import current_user
 from app.forms.item_form import ItemForm
 from app.forms.image_form import ImageForm
+from app.forms.item_imageless_form import ItemImagelessForm
 from app.api.s3_helpers import ( upload_file_to_s3, get_unique_filename)
 
 item_routes = Blueprint('items', __name__)
@@ -60,7 +61,7 @@ def put_items(id):
   if current_user.is_authenticated:
     item = Item.query.get(id)
     if current_user.id == item.seller_id:
-      form = ItemForm()
+      form = ItemImagelessForm()
       form['csrf_token'].data = request.cookies.get('csrf_token')
       if form.validate_on_submit():
         item.category = form.data.get('category')

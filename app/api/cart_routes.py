@@ -1,9 +1,8 @@
 from flask import Blueprint, request
-from app.models import Cart, db
+from app.models import Cart, db, Purchase
 from flask_login import current_user
 from app.forms.cart_form import CartForm
 from app.forms.cart_form_count import CartCountForm
-from datetime import datetime
 
 cart_routes = Blueprint('carts', __name__)
 
@@ -24,8 +23,8 @@ def get_purchased():
   Does a query for the current user's purchase history
   """
   if current_user.is_authenticated:
-    carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == True).order_by(Cart.purchased_at).all()
-    return [cart.to_dict for cart in carts]
+    purchases = Purchase.query.filter(Purchase.user_id == current_user.id).order_by(Purchase.purchased_at).all()
+    return [purchase.to_dict for purchase in purchases]
   return {'errors': ['Unauthorized']}
 
 @cart_routes.route('/', methods=['POST'])
@@ -54,11 +53,16 @@ def purchase():
   if current_user.is_authenticated:
     carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == False).all()
     for cart in carts:
-      cart.purchased = True
-      cart.purchased_at = datetime.now()
+      purchase = Purchase(
+        user_id = current_user.id,
+        count = cart.count,
+        item_name = cart.item.name
+      )
+      db.session.add(purchase)
+      db.session.delete(cart)
     db.session.commit()
     carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == False).all()
-    return [cart.to_dict for cart in carts] #Probably should change that return
+    return []
   return {'errors': ['Unauthorized']}
 
 @cart_routes.route('/<int:id>/update', methods=['POST'])

@@ -18,7 +18,7 @@ function Item({item}){
       <div>
       <p>{item.name}</p>
       <p>{item.rating} star</p>
-      <p>{item.price}</p>
+      <p>{item.price.toFixed(2)}</p>
       </div>
     </div>
   )

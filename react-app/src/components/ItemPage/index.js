@@ -13,15 +13,22 @@ function ItemPage(){
   const item = useSelector(state => state.items.singleItem)
   const user = useSelector(state => state.session.user)
   const [isSeller, setIsSeller] = useState(false)
+  const [isItemReady, setIsItemReady] = useState(false);
+
   useEffect(() => {
-    dispatch(thunkGetItem(id))
-    if(user) setIsSeller(user.id === item.seller_id)
-    else setIsSeller (false)
-  }, [user])
+    if(user) setIsSeller(user.id === item.seller_id);
+    else setIsSeller (false);
+  }, [user, item])
+
+  useEffect(() => {
+    console.log(item);
+    if (!Object.keys(item).length && isItemReady) history.push('/')
+  }, [item])
 
   const handleUpdate = () => {
     history.push(`/items/${id}/update`)
   }
+
 
   const handleAdd = () => {
     const payload = {
@@ -36,14 +43,19 @@ function ItemPage(){
     history.push('/cart')
   }
 
-  return (
+  useEffect(() => {
+    dispatch(thunkGetItem(id))
+    .then(setIsItemReady(true))
+  }, [])
+
+  return Object.keys(item).length ? (
     <div>
       <img src={item.image} alt="Item Image" />
       <p>{item.name}</p>
       <label>Rating</label><p>{item.rating}</p>
       <p>{item.description}</p>
       <p>{item.seller}</p>
-      <label>List Price</label><p>{item.price}</p>
+      <label>List Price</label><p>{item.price.toFixed(2)}</p>
       <label>Price after Discount</label><p>{(item.price - item.price * (item.discount / 100)).toFixed(2)}</p>
       <p>{item.category}</p>
       {user && isSeller ?
@@ -62,7 +74,7 @@ function ItemPage(){
       }
     </div>
   )
-
+  : null
 }
 
 export default ItemPage

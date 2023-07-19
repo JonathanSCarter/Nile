@@ -17,7 +17,7 @@ class Item(db.Model):
   category = db.Column(db.String(100), nullable=False) #Make this an Enum later when you add categories
   seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
-  cart = db.relationship("Cart", back_populates="item")
+  cart = db.relationship("Cart", back_populates="item", cascade='all, delete-orphan')
   user = db.relationship("User", back_populates="item")
 
   @property

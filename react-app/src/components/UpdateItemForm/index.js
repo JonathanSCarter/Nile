@@ -76,7 +76,7 @@ function UpdateItemForm({}){
     Discount<input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>{errors.discount}
     Description<input placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)}></input>{errors.description}
     Category<input placeholder='category' value={category} onChange={(e) => setCategory(e.target.value)}></input>{errors.category}
-    <button type='submit'>Updtae Item Details</button>
+    <button type='submit'>Update Item Details</button>
     </form>
     <form onSubmit={handleImage} encType='multipart/form-data'>
     Image<input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])}></input>{errors.image}

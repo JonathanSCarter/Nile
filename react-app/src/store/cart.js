@@ -75,7 +75,7 @@ const cart = (state = initialState, action) => {
     }
     case GET_OLD_CART: {
       const newState = {...state, oldCartItems: {}}
-      action.payload.forEach(cartItem => newState.oldCartItems[cartItem.id] = cartItem)
+      action.payload.forEach(purchase => newState.oldCartItems[purchase.id] = purchase)
       return newState
     }
     default:
