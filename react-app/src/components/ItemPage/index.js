@@ -13,7 +13,6 @@ function ItemPage(){
   const item = useSelector(state => state.items.singleItem)
   const user = useSelector(state => state.session.user)
   const [isSeller, setIsSeller] = useState(false)
-  const [isItemReady, setIsItemReady] = useState(false);
 
   useEffect(() => {
     if(user) setIsSeller(user.id === item.seller_id);
@@ -21,8 +20,7 @@ function ItemPage(){
   }, [user, item])
 
   useEffect(() => {
-    console.log(item);
-    if (!Object.keys(item).length && isItemReady) history.push('/')
+    if (!Object.keys(item).length) history.push('/')
   }, [item])
 
   const handleUpdate = () => {
@@ -45,9 +43,8 @@ function ItemPage(){
 
   useEffect(() => {
     dispatch(thunkGetItem(id))
-    .then(setIsItemReady(true))
   }, [])
-
+  console.log(Object.keys(item).length, item, "++++++++");
   return Object.keys(item).length ? (
     <div>
       <img src={item.image} alt="Item Image" />
