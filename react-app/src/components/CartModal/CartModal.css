@@ -1,0 +1,12 @@
+.cart-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  position: absolute;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  top: 80px;
+  right: 20px;
+}

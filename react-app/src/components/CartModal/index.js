@@ -4,7 +4,7 @@ import { thunkGetCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-
+import './CartModal.css'
 
 function CartModal() {
   const dispatch = useDispatch();
@@ -25,14 +25,14 @@ function CartModal() {
   }
 
   return (
-    <>
+    <div className="cart-modal">
     {
       normalizedCartItems.map((cartItem) => {
         return <CartItem cartItem={cartItem} />
       })
     }
     <button onClick={handleGoCart}>Go to Checkout</button>
-    </>
+    </div>
   )
 }
 
