@@ -31,7 +31,7 @@ function CartModal() {
         return <CartItem cartItem={cartItem} />
       })
     }
-    <button onClick={handleGoCart}>Go to Cart</button>
+    <button onClick={handleGoCart}>Go to Checkout</button>
     </>
   )
 }

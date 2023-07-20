@@ -68,8 +68,8 @@ function ItemPage(){
        <>
         <button onClick={handleAdd}>Add to Cart</button>
         {isAdded && <div>
-          <p>Item has been added to your cart! Would you like to go to your cart?</p>
-          <button onClick={() => history.push('/cart')}>Go to Cart</button>
+          <p>Item has been added to your cart! Would you like to go to checkout?</p>
+          <button onClick={() => history.push('/cart')}>Go to Checkout</button>
           </div>}
         <button onClick={handleBuy}>Buy Now</button>
        </>
