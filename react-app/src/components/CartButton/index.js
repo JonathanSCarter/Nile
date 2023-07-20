@@ -32,7 +32,7 @@ function CartButton() {
     <button onClick={showCart}>View Cart</button>
     {show && (
       <div className="cart-modal">
-        {normalizedCartItems.slice(0, 5).map((cartItem) => {
+        {normalizedCartItems.length === 0 ? <p>Your Cart it Empty</p>: normalizedCartItems.slice(0, 5).map((cartItem) => {
           return <CartItem key={cartItem.id} cartItem={cartItem} />;
         })}
         <div className="cart-modal-bottom">
