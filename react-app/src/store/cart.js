@@ -26,11 +26,15 @@ export const thunkGetCart = () => async (dispatch) => {
 
 
 export const thunkAddToCart = (payload) => async (dispatch) => {
-  fetch('/api/carts/', {
+  const res = await fetch('/api/carts/', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   })
+  if(res && res.ok) {
+    const data = await res.json();
+    dispatch(actionGetCart(data))
+  }
 }
 
 export const thunkUpdateCount = (id, count) => async (dispatch) => {

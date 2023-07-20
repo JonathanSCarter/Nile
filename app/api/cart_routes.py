@@ -41,7 +41,8 @@ def post_to_cart():
       cart.user_id = current_user.id
       db.session.add(cart)
       db.session.commit()
-      return cart.to_dict
+      carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == False).all()
+      return [cart.to_dict for cart in carts]
     return {"errors": form.errors}, 400
   return {'errors': ['Unauthorized']}
 

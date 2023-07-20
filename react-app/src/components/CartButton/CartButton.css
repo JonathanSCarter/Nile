@@ -1,0 +1,31 @@
+.cart-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  top: 80px;
+  right: 20px;
+}
+
+.navbar .cart-modal button {
+  color: black;
+  background-color: orange;
+  height: 30px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.cart-modal p {
+  font-size: larger;
+}
+
+.cart-modal-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

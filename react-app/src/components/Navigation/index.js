@@ -3,8 +3,7 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-import CartModal from "../CartModal";
-import OpenModalButton from "../OpenModalButton";
+import CartButton from "../CartButton";
 import { thunkGetQueriedItems, thunkGetItems } from "../../store/item";
 
 function Navigation({ isLoaded }) {
@@ -84,11 +83,12 @@ function Navigation({ isLoaded }) {
               Order History
             </NavLink>
           </button>
-          <OpenModalButton
+          <CartButton />
+          {/* <OpenModalButton
             buttonText="View Cart"
             onItemClick={closeMenu}
             modalComponent={<CartModal />}
-            />
+            /> */}
             </>
           )}
           </div>

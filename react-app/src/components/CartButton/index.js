@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import { useHistory } from "react-router-dom";
-import { useModal } from "../../context/Modal";
-import './CartModal.css'
+import './CartButton.css'
 
-function CartModal() {
+function CartButton() {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.cartItems);
   const [normalizedCartItems, setNormalizedCartItems] = useState([...Object.values(cartItems)]);
   const history = useHistory()
-  const { closeModal } = useModal();
+  const [show, setShow] = useState(false)
+
   useEffect(() => {
     dispatch(thunkGetCart());
   }, [])
@@ -19,21 +19,32 @@ function CartModal() {
     setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
 
+  const showCart = () => {
+    setShow(!show)
+  }
+
   const handleGoCart = () => {
-    closeModal()
     history.push('/cart')
   }
 
   return (
-    <div className="cart-modal">
-    {
-      normalizedCartItems.map((cartItem) => {
-        return <CartItem cartItem={cartItem} />
-      })
-    }
-    <button onClick={handleGoCart}>Go to Checkout</button>
-    </div>
+    <>
+    <button onClick={showCart}>View Cart</button>
+    {show && (
+      <div className="cart-modal">
+        {normalizedCartItems.slice(0, 5).map((cartItem) => {
+          return <CartItem key={cartItem.id} cartItem={cartItem} />;
+        })}
+        <div className="cart-modal-bottom">
+        {normalizedCartItems.length > 5 && (
+          <p>And some more items</p>
+          )}
+        <button onClick={handleGoCart}>Go to Checkout</button>
+          </div>
+      </div>
+    )}
+  </>
   )
 }
 
-export default CartModal
+export default CartButton

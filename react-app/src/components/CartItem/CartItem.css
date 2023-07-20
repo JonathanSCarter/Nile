@@ -1,10 +1,9 @@
 .cart-item {
   display: flex;
-  margin-top: 30px;
-  margin-bottom: 30px;
   border: 1px solid grey;
   align-items: center;
   width: 300px;
+  height: 120px;
 }
 
 .cart-item-info {

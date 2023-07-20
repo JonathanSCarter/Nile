@@ -4,7 +4,7 @@ import items, { thunkGetItem } from "../../store/item";
 import { useParams, useHistory } from "react-router-dom";
 import DeleteItem from '../DeleteItem'
 import OpenModalButton from "../OpenModalButton";
-import { thunkAddToCart } from "../../store/cart";
+import { thunkAddToCart, thunkGetCart } from "../../store/cart";
 
 function ItemPage(){
   const history = useHistory()
