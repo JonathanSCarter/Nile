@@ -10,3 +10,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.price-style {
+  margin-top: 0px;
+  display: flex;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
