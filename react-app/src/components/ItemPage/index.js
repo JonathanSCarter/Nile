@@ -13,7 +13,7 @@ function ItemPage(){
   const item = useSelector(state => state.items.singleItem)
   const user = useSelector(state => state.session.user)
   const [isSeller, setIsSeller] = useState(false)
-
+  const [isAdded, setIsAdded] = useState(false)
   useEffect(() => {
     if(user) setIsSeller(user.id === item.seller_id);
     else setIsSeller (false);
@@ -34,6 +34,7 @@ function ItemPage(){
       "count": 1
     }
     dispatch(thunkAddToCart(payload))
+    setIsAdded(true)
   }
 
   const handleBuy = async () => {
@@ -66,6 +67,10 @@ function ItemPage(){
        :
        <>
         <button onClick={handleAdd}>Add to Cart</button>
+        {isAdded && <div>
+          <p>Item has been added to your cart! Would you like to go to your cart?</p>
+          <button onClick={() => history.push('/cart')}>Go to Cart</button>
+          </div>}
         <button onClick={handleBuy}>Buy Now</button>
        </>
       }

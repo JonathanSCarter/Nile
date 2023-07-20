@@ -46,7 +46,7 @@ function Navigation({ isLoaded }) {
 
   const handleSearch = () => {
     dispatch(thunkGetQueriedItems(query)).then(() => {
-      history.push('/');
+      history.push('/', { search: true});
     });
   }
 
@@ -57,7 +57,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="navbar">
       <button className="logo-in-navbar" onClick={handleItems}>
-          <NavLink exact to="/" className='logo'>
+          <NavLink exact to='/' className='logo'>
             Nile
           </NavLink>
         </button>
@@ -72,6 +72,11 @@ function Navigation({ isLoaded }) {
           <button>
             <NavLink className='header-link' exact to="/create">
               Create Item
+            </NavLink>
+          </button>
+          <button>
+            <NavLink className='header-link' exact to='/cart'>
+              Go to Checkout
             </NavLink>
           </button>
           <button>
