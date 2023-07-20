@@ -22,7 +22,9 @@ def get_item(id):
   Queries for an item and returns it as a dictionary
   """
   item = Item.query.get(id)
-  return item.to_dict
+  if item:
+    return item.to_dict
+  return {"errors: No item exists"}, 400
 
 @item_routes.route('/query/<string:query>')
 def get_queried_items(query):

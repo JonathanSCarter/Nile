@@ -30,7 +30,6 @@ function CartItem({ cartItem }) {
       <div className="cart-item-info">
         <p>{cartItem.item.name}</p>
         <span>
-
         <span>
         <label>Quantity</label>
         <select onChange={handleUpdate} value={count}>

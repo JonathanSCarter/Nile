@@ -1,0 +1,68 @@
+.item-page {
+  display: flex;
+  justify-content: center;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.item-page-info {
+  display: flex;
+  width: 70%;
+  border: 3px solid lightgray;
+  align-items: center;
+}
+
+.item-page .item-page-info img {
+  width: 350px;
+  height: 350px;
+}
+
+.item-page-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  border: 3px solid lightgray;
+  margin-left: 10%;
+  justify-content: space-between;
+}
+
+.item-page-info .info-span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-span * {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.info-span span * {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.item-page-sidebar button {
+  color: black;
+  background-color: orange;
+  height: 30px;
+  border-radius: 15px;
+  margin: 5px;
+  border-radius: 1px solid black;
+  width: 100%;
+}
+
+.item-page-sidebar .button-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.item-page-sidebar select {
+  width: 65%;
+}

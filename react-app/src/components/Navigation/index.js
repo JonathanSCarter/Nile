@@ -60,8 +60,10 @@ function Navigation({ isLoaded }) {
             Nile
           </NavLink>
         </button>
+        <span className="search-span">
         <input placeholder='search' value={query} onChange={(e) => setQuery(e.target.value)}></input>
         <button onClick={handleSearch}>Search</button>
+        </span>
         <div className="user-links">
         {isLoaded && useProfile && (
             <ProfileButton user={sessionUser} />
@@ -84,11 +86,6 @@ function Navigation({ isLoaded }) {
             </NavLink>
           </button>
           <CartButton />
-          {/* <OpenModalButton
-            buttonText="View Cart"
-            onItemClick={closeMenu}
-            modalComponent={<CartModal />}
-            /> */}
             </>
           )}
           </div>

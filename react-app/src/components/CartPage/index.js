@@ -3,14 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import { thunkPurchaseCart } from "../../store/cart";
-import './CartPage.css'
+import { useHistory } from "react-router-dom";
+import './CartPage.css';
+
 function CartPage(){
-  const dispatch = useDispatch()
-  const cartItems = useSelector(state => state.cart.cartItems)
-  const [normalizedCartItems, setNormalizedCartItems] = useState([...Object.values(cartItems)])
-  const [price, setPrice] = useState(0)
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.cartItems);
+  const [normalizedCartItems, setNormalizedCartItems] = useState([...Object.values(cartItems)]);
+  const [price, setPrice] = useState(0);
   const handlePurchase = () => {
-    dispatch(thunkPurchaseCart())
+    dispatch(thunkPurchaseCart());
+    dispatch(thunkGetCart());
+    history.push('/history')
   }
 
   useEffect(() => {
@@ -24,6 +29,7 @@ function CartPage(){
   useEffect(() => {
     setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
+
   return(
     <div className="cart-page">
       <div className="cart-holder">

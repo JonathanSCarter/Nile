@@ -112,3 +112,21 @@ body {
 .profile-button {
   background-color: white;
 }
+
+.navbar .search-span {
+  display: flex;
+  align-items: center;
+  border: 4px solid black;
+  border-radius: 30px;
+  height: 24px;
+  background-color: white;
+}
+
+.navbar .search-span button {
+  color: black;
+}
+
+.navbar .search-span input {
+  margin-left: 10px;
+  border: 0px;
+}

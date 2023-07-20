@@ -10,7 +10,7 @@ class Item(db.Model):
   seller = db.Column(db.String(40), nullable=False)
   rating = db.Column(db.Float(2), default=5)
   price = db.Column(db.Float(7), nullable=False)
-  name = db.Column(db.String(200), nullable=False)
+  name = db.Column(db.String(200), nullable=False) #Add index later
   discount = db.Column(db.Integer, default=0)
   image = db.Column(db.String)
   description = db.Column(db.String(1000), nullable=False)
