@@ -28,6 +28,7 @@ wtforms = "==3.0.1"
 boto3 = "*"
 email-validator = "*"
 botocore = "*"
+importlib-metadata = "*"
 
 [dev-packages]
 
