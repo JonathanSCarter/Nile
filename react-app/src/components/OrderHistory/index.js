@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetPurchases } from "../../store/cart";
 import OldCartItem from "../OldCartItem";
-
+import './OrderHistory.css'
 function OrderHistory(){
   const dispatch = useDispatch()
 
@@ -17,12 +17,13 @@ function OrderHistory(){
   }, [])
 
   return(
-    <>
-    {normalizedCarts && normalizedCarts.map((cart) => {
+    <div className="order-history-container">
+      <h1>Your Order History</h1>
+    {normalizedCarts && normalizedCarts.sort((a,b) => new Date(b.purchased_at) - new Date(a.purchased_at)).map((cart) => {
       return (<OldCartItem cart={cart}/>)
     }
     )}
-    </>
+    </div>
   )
 }
 

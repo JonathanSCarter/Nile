@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  background-color: navy;
+  color: white;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer .link {
+  cursor: pointer;
+}

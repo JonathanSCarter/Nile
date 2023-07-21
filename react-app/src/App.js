@@ -11,7 +11,7 @@ import ItemPage from "./components/ItemPage";
 import UpdateItemForm from "./components/UpdateItemForm";
 import CartPage from "./components/CartPage";
 import OrderHistory from "./components/OrderHistory";
-
+import Footer from "./components/Footer";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -50,6 +50,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

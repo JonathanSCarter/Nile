@@ -1,0 +1,9 @@
+.order-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid black;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 100px;
+}

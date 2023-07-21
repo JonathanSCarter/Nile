@@ -57,7 +57,7 @@ function ItemPage() {
     <div className="item-page">
       <div className="item-page-info">
         <img src={item.image} alt="Item Image" />
-        <span className="info-span">
+        <div className="info-span">
           <h2>{item.name}</h2>
           <span>
             <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
@@ -89,7 +89,7 @@ function ItemPage() {
             )}
           </span>
           {/* <p>{item.category}</p> */}
-        </span>
+        </div>
       </div>
       {user ? (
         isSeller ? (

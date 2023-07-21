@@ -34,10 +34,11 @@ function CartPage(){
     <div className="cart-page">
       <div className="cart-holder">
     {
-      normalizedCartItems.map((cartItem) => {
+      normalizedCartItems.length === 0 ? <h3>Your cart is currently empty. When you add an item to your cart, you will see it here.</h3>: normalizedCartItems.map((cartItem) => {
         return <CartItem cartItem={cartItem}/>
       })
     }
+
     </div>
 
     <button className='purchase-button' onClick={handlePurchase}>Buy Now ${price}</button>

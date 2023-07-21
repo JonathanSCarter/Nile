@@ -1,0 +1,38 @@
+.create-item-form {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid lightgrey;
+}
+
+.create-item-form label {
+  display: inline-flex;
+  font-size: large;
+  width: 10%;
+}
+
+.create-item-form-span {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.create-item-form input {
+  width: 85%;
+  font-size: large;
+}
+
+.create-item-form button {
+  color: black;
+  background-color: orange;
+  height: 30px;
+  border-radius: 15px;
+  margin: 5px;
+  border-radius: 1px solid black;
+  font-size: larger;
+}

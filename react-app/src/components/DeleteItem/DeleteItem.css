@@ -1,0 +1,25 @@
+.delete-modal button{
+  color: black;
+  background-color: orange;
+  height: 60px;
+  border-radius: 15px;
+  margin: 5px;
+  border-radius: 1px solid black;
+  width: 40%;
+  margin-bottom: 50px;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-modal span {
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-modal h1{
+  margin-left: 100px;
+  margin-right: 100px;
+}

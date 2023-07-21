@@ -1,0 +1,7 @@
+.order-history-item {
+  border-top: 3px solid grey;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}

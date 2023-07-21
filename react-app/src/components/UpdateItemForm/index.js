@@ -70,18 +70,43 @@ function UpdateItemForm({}){
   }
   return(
     <>
-    <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
-    Name<input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>{errors.name}
-    Price<input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>{errors.price}
-    Discount<input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>{errors.discount}
-    Description<input placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)}></input>{errors.description}
-    Category<input placeholder='category' value={category} onChange={(e) => setCategory(e.target.value)}></input>{errors.category}
-    <button type='submit'>Update Item Details</button>
-    </form>
-    <form onSubmit={handleImage} encType='multipart/form-data'>
-    Image<input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])}></input>{errors.image}
-    <button type='submit'>Update Image</button>
-    </form>
+<form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data" className="create-item-form">
+  <span className="create-item-form-span">
+    <label>Name</label>
+    <input placeholder='name' value={name} onChange={(e) => setName(e.target.value)}></input>
+    {errors.name}
+  </span>
+  <span className="create-item-form-span">
+    <label>Price</label>
+    <input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>
+    {errors.price}
+  </span>
+  <span className="create-item-form-span">
+    <label>Discount</label>
+    <input type='number' placeholder='discount' value={discount} onChange={(e) => setDiscount(e.target.value)}></input>
+    {errors.discount}
+  </span>
+  <span className="create-item-form-span">
+    <label>Description</label>
+    <input placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)}></input>
+    {errors.description}
+  </span>
+  <span className="create-item-form-span">
+    <label>Category</label>
+    <input placeholder='category' value={category} onChange={(e) => setCategory(e.target.value)}></input>
+    {errors.category}
+  </span>
+  <button type='submit'>Update Item Details</button>
+</form>
+
+<form onSubmit={handleImage} encType='multipart/form-data' className="create-item-form">
+  <span className="create-item-form-span">
+    <label>Image</label>
+    <input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])}></input>
+    {errors.image}
+  </span>
+  <button type='submit'>Update Image</button>
+</form>
     </>
   )
 
