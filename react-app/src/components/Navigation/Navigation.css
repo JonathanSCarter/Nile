@@ -124,6 +124,7 @@ body {
 
 .navbar .search-span button {
   color: black;
+  height: 24px;
 }
 
 .navbar .search-span input {

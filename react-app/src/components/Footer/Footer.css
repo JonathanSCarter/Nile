@@ -12,3 +12,7 @@
 .footer .link {
   cursor: pointer;
 }
+
+.footer a {
+  color: white;
+}

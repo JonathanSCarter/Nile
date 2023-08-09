@@ -1,0 +1,53 @@
+.login-page {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page form{
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.login-page form label {
+  display: inline-flex;
+  font-size: large;
+  text-align: center;
+}
+
+.login-page form input {
+  width: 80%;
+  font-size: large;
+  line-height: 1;
+}
+
+.login-page form span {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.login-page button {
+  color: black;
+  background-color: orange;
+  height: 30px;
+  border-radius: 15px;
+  margin: 5px;
+  border-radius: 1px solid black;
+  font-size: larger;
+  width: 250px;
+  cursor: pointer;
+}
+
+.login-page h1 {
+  margin-bottom: 0px;
+}
+
+.login-page .login-errors {
+  color: red;
+}

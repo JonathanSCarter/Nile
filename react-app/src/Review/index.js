@@ -4,8 +4,11 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function Review({ review }) {
   return (
-    <div>
-      <span>
+    <div className="review">
+        <h4>
+        {review.name}
+        </h4>
+      <span className="rating">
         <FontAwesomeIcon
           icon={faStar}
           style={{ color: review.rating >= 0.5 ? "#ffdd00" : "#ccc" }}
@@ -27,10 +30,7 @@ function Review({ review }) {
           style={{ color: review.rating >= 4.5 ? "#ffdd00" : "#ccc" }}
         />{" "}
       </span>
-      <h4>
-      {review.name}
-      </h4>
-      <span>{review.message}</span>
+      {review.message ? <span className="review-message">{review.message}</span> : null}
     </div>
   );
 }

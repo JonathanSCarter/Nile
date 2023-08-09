@@ -1,4 +1,5 @@
 .item-page {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   margin-left: 100px;
@@ -9,12 +10,15 @@
   display: flex;
   width: 70%;
   border: 3px solid lightgray;
+  box-shadow: 5px 5px 3px lightgray;
   align-items: center;
 }
 
 .item-page .item-page-info img {
   width: 350px;
   height: 350px;
+  margin: 10px;
+  border: 2px solid black;
 }
 
 .item-page-sidebar {
@@ -22,6 +26,7 @@
   flex-direction: column;
   width: 10%;
   border: 3px solid lightgray;
+  box-shadow: 5px 5px 3px lightgray;
   margin-left: 10%;
   justify-content: space-between;
 }
@@ -71,4 +76,106 @@
   width: 65%;
 }
 
+.all-item-page {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 125px;
+}
 
+.review-container {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid lightgray;
+  box-shadow: 5px 5px 3px lightgray;
+  margin-top: 100px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.review {
+  margin: 10px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.review h4 {
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.review .rating {
+  margin-left: 5px;
+}
+
+.review .review-message {
+  margin-left: 5px;
+  margin-top: 25px;
+}
+
+.review-box {
+  margin: 10px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-box * {
+  margin: 5px;
+}
+
+.review-box h2 {
+  text-align: center;
+}
+
+.review-box button {
+  color: black;
+  background-color: orange;
+  height: 30px;
+  border-radius: 15px;
+  margin: 5px;
+  border-radius: 1px solid black;
+  width: 45%;
+  cursor: pointer;
+}
+
+.review-box .button-holder {
+  display: flex;
+  justify-content: space-around;
+}
+
+.review-box .rating-in-review-box * {
+  margin: 0px;
+}
+
+.review-box textarea {
+  resize: none;
+  margin: 0px;
+  width: 90%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  position: relative;
+  right: 5px;
+}
+
+.review-box .rating-in-review-box {
+  display: flex;
+  justify-content: center;
+}
+
+.review-box .review-message-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.review-box form {
+  width: 100%;
+}
+
+.review-container h2 {
+  text-align: center;
+}

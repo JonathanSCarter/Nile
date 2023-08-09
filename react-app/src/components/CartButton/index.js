@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import { useHistory } from "react-router-dom";
 import './CartButton.css'
+import { faCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 function CartButton() {
   const dispatch = useDispatch();
@@ -12,9 +13,13 @@ function CartButton() {
   const history = useHistory()
   const [show, setShow] = useState(false)
 
+  const cartModalRef = useRef(null);
+
+
   useEffect(() => {
     dispatch(thunkGetCart());
   }, [])
+
   useEffect(() => {
     setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
@@ -27,11 +32,24 @@ function CartButton() {
     history.push('/cart')
   }
 
+  const handleOutsideClick = (e) => {
+    if (cartModalRef.current && !cartModalRef.current.contains(e.target)) {
+      setShow(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <>
     <button onClick={showCart}>View Cart</button>
     {show && (
-      <div className="cart-modal">
+      <div className="cart-modal" ref={cartModalRef}>
         {normalizedCartItems.length === 0 ? <p>Your Cart it Empty</p>: normalizedCartItems.slice(0, 5).map((cartItem) => {
           return <CartItem key={cartItem.id} cartItem={cartItem} />;
         })}

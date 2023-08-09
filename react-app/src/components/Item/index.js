@@ -22,11 +22,29 @@ function Item({ item }) {
       <div className="item-details">
         <p>{item.name}</p>
         <span>
-        <FontAwesomeIcon icon={faStar} style={{color: "#ffdd00",}} />
-        <FontAwesomeIcon icon={faStar} style={{color: "#ffdd00",}} />
-        <FontAwesomeIcon icon={faStar} style={{color: "#ffdd00",}} />
-        <FontAwesomeIcon icon={faStar} style={{color: "#ffdd00",}} />
-        <FontAwesomeIcon icon={faStar} style={{color: "#ffdd00",}} />
+        <span>
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: item.rating >= 0.5 ? "#ffdd00" : "#ccc" }}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: item.rating >= 1.5 ? "#ffdd00" : "#ccc" }}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: item.rating >= 2.5 ? "#ffdd00" : "#ccc" }}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: item.rating >= 3.5 ? "#ffdd00" : "#ccc" }}
+              />
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ color: item.rating >= 4.5 ? "#ffdd00" : "#ccc" }}
+              />{" "}
+              ({item.rating.toFixed(1)})
+            </span>
     </span>
         <span className="price-style">
         <p style={item.discount > 0 ? { textDecoration: "line-through", marginRight:"8px" } : {}}>
