@@ -12,7 +12,6 @@ function CartItem({ cartItem }) {
     const payload = {
       count: e.target.value,
     };
-    //setCount(e.target.value)
     dispatch(thunkUpdateCount(cartItem.id, payload));
   };
 

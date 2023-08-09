@@ -8,6 +8,7 @@ import { thunkAddToCart, thunkGetCart } from "../../store/cart";
 import "./ItemPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import ReviewContainer from "../ReviewContainer";
 
 function ItemPage() {
   const history = useHistory();
@@ -45,7 +46,6 @@ function ItemPage() {
   useEffect(() => {
     const fetchItem = async () => {
       const res = await dispatch(thunkGetItem(id));
-      console.log(res);
       if (res && !res.ok) {
         history.push("/");
       }
@@ -60,11 +60,26 @@ function ItemPage() {
         <div className="info-span">
           <h2>{item.name}</h2>
           <span>
-            <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: "#ffdd00" }} />
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: item.rating >= 0.5 ? "#ffdd00" : "#ccc" }}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: item.rating >= 1.5 ? "#ffdd00" : "#ccc" }}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: item.rating >= 2.5 ? "#ffdd00" : "#ccc" }}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: item.rating >= 3.5 ? "#ffdd00" : "#ccc" }}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: item.rating >= 4.5 ? "#ffdd00" : "#ccc" }}
+            /> ({item.rating})
           </span>
           <p>{item.description}</p>
           <h4>Sold to you by {item.seller}</h4>
@@ -154,6 +169,7 @@ function ItemPage() {
           </div>
         )
       ) : null}
+      <ReviewContainer id={id} />
     </div>
   ) : null;
 }

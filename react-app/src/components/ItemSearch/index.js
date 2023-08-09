@@ -10,13 +10,10 @@ function ItemSearch() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.allItems);
   const normalizedItems = [...Object.values(items)];
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if(!location.state?.search)
-    dispatch(thunkGetItems()).then(() => {
-      setIsReady(true);
-    });
+    dispatch(thunkGetItems())
   }, []);
 
   return (

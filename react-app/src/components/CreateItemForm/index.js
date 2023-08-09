@@ -30,7 +30,6 @@ function ItemForm() {
     const res = await dispatch(thunkPostItem(formData));
 
     if (res.errors) {
-      console.log(res.errors);
       setErrors(res.errors);
     } else {
       history.push(`/items/${res.id}`);
@@ -66,6 +65,7 @@ function ItemForm() {
       placeholder="price"
       min="0"
       value={price}
+      step="0.01"
       onChange={(e) => setPrice(e.target.value)}
     ></input>
     {errors.price}

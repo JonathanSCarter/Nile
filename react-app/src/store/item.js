@@ -26,7 +26,6 @@ export const thunkGetQueriedItems = (query) => async (dispatch) => {
   const res = await fetch(`/api/items/query/${query}`)
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
     dispatch(actionGetItems(data))
   }
 }
@@ -108,9 +107,6 @@ const items = (state = initialState, action) => {
       newState.singleItem = action.payload
       return newState
     }
-    // case POST_ITEM:{
-    //   return state
-    // }
     default:
       return state
   }

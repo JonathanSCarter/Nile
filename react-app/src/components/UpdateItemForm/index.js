@@ -78,7 +78,7 @@ function UpdateItemForm({}){
   </span>
   <span className="create-item-form-span">
     <label>Price</label>
-    <input type='number' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>
+    <input type='number' step='0.01' placeholder='price' value={price} onChange={(e) => setPrice(e.target.value)}></input>
     {errors.price}
   </span>
   <span className="create-item-form-span">

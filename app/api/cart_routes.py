@@ -11,7 +11,6 @@ def get_cart():
   """
   Does a query for the current user's active cart information
   """
-  print('test')
   if current_user.is_authenticated:
     carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == False).all()
     return [cart.to_dict for cart in carts]
