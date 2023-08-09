@@ -1,13 +1,15 @@
 """empty message
 
 Revision ID: 92693bc81669
-Revises: 
+Revises:
 Create Date: 2023-08-07 13:26:35.450794
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = '92693bc81669'
@@ -27,6 +29,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('seller', sa.String(length=40), nullable=False),
@@ -41,6 +47,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
+
     op.create_table('purchases',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -52,6 +62,9 @@ def upgrade():
     )
     with op.batch_alter_table('purchases', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_purchases_purchased_at'), ['purchased_at'], unique=False)
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE purchases SET SCHEMA {SCHEMA};")
 
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -68,6 +81,9 @@ def upgrade():
         batch_op.create_index(batch_op.f('ix_carts_purchased'), ['purchased'], unique=False)
         batch_op.create_index(batch_op.f('ix_carts_purchased_at'), ['purchased_at'], unique=False)
 
+    if environment == "production":
+        op.execute(f"ALTER TABLE carts SET SCHEMA {SCHEMA};")
+
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
@@ -78,6 +94,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
