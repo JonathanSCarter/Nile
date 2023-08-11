@@ -22,6 +22,8 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <div style={{padding: "0px 0px 150px 0px"}}>
+
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -50,6 +52,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      </div>
       <Footer />
     </>
   );

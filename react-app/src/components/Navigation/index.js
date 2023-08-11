@@ -9,10 +9,10 @@ import { thunkGetQueriedItems, thunkGetItems } from "../../store/item";
 function Navigation({ isLoaded }) {
   const history = useHistory();
   const dispatch = useDispatch();
-	const ulRef = useRef();
+  const ulRef = useRef();
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const { pathname } = useLocation();
   const route = pathname.split("/")[1];
   const [useProfile, setUseProfile] = useState(true);
@@ -45,49 +45,62 @@ function Navigation({ isLoaded }) {
 
   const handleSearch = () => {
     dispatch(thunkGetQueriedItems(query)).then(() => {
-      history.push('/', { search: true});
+      history.push("/", { search: true });
     });
-  }
+  };
 
   const handleItems = () => {
     dispatch(thunkGetItems());
-  }
+  };
 
   return (
-    <div className="navbar">
+    <div className="big-navbar">
+        <div className="navbar">
+
       <button className="logo-in-navbar" onClick={handleItems}>
-          <NavLink exact to='/' className='logo'>
-            Nile
-          </NavLink>
-        </button>
-        <span className="search-span">
-        <input placeholder='search' value={query} onChange={(e) => setQuery(e.target.value)}></input>
-        <button onClick={handleSearch}>Search</button>
-        </span>
-        <div className="user-links">
-        {isLoaded && useProfile && (
-            <ProfileButton user={sessionUser} />
+        <NavLink exact to="/" className="logo">
+          Nile
+        </NavLink>
+      </button>
+      <div className="user-links">
+        {isLoaded && useProfile && <ProfileButton user={sessionUser} />}
+        {sessionUser && (
+          <>
+            <button>
+              <NavLink className="header-link" exact to="/create">
+                Create Item
+              </NavLink>
+            </button>
+            <button>
+              <NavLink className="header-link" exact to="/cart">
+                Go to Checkout
+              </NavLink>
+            </button>
+            <button>
+              <NavLink className="header-link" exact to="/history">
+                Order History
+              </NavLink>
+            </button>
+            <CartButton />
+          </>
         )}
-      {sessionUser && (
-        <>
-          <button>
-            <NavLink className='header-link' exact to="/create">
-              Create Item
-            </NavLink>
+        {!useProfile && !sessionUser && (
+          <button style={{ cursor: "default" }}>
+            {/* This button has no text and no functionality */}
           </button>
-          <button>
-            <NavLink className='header-link' exact to='/cart'>
-              Go to Checkout
-            </NavLink>
-          </button>
-          <button>
-            <NavLink className='header-link' exact to='/history'>
-              Order History
-            </NavLink>
-          </button>
-          <CartButton />
-            </>
-          )}
+        )}
+      </div>
+        </div>
+        <div className="search-div">
+
+      <span className="search-span">
+        <input
+          placeholder="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          ></input>
+        <button onClick={handleSearch}>Search</button>
+      </span>
           </div>
     </div>
   );

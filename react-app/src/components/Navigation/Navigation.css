@@ -53,12 +53,11 @@ img {
   height: 150px;
 }
 
-.navbar {
+.big-navbar .navbar {
   display: flex;
   top: 0px;
   flex-direction: row;
-  width: 100%;
-  height: 100px;
+  height: 70px;
   margin-top: 0px;
   padding-top: 0px;
   align-items: center;
@@ -67,7 +66,7 @@ img {
   position: sticky;
 }
 
-.logo {
+.navbar .logo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,15 +84,17 @@ body {
   padding: 0px;
 }
 
-.navbar button {
+.big-navbar button {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   border: none;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 1fr;
   height: 100px;
+  text-align: center;
   text-decoration: none;
   color: white;
   font-size: large;
@@ -113,21 +114,44 @@ body {
   background-color: white;
 }
 
-.navbar .search-span {
+.big-navbar .search-span {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border: 4px solid black;
   border-radius: 30px;
   height: 24px;
   background-color: white;
+  width: 800px;
 }
 
-.navbar .search-span button {
+.big-navbar .search-span button {
   color: black;
   height: 24px;
+  width: 100px;
 }
 
-.navbar .search-span input {
+.big-navbar .search-span input {
   margin-left: 10px;
   border: 0px;
+  width: 700px;
+}
+
+.search-span input:focus {
+  outline:transparent
+}
+
+.big-navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  position: sticky;
+  top:0px;
+}
+
+.search-div {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0px 15px 0px;
+
 }

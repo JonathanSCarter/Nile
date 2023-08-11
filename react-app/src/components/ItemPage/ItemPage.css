@@ -1,6 +1,7 @@
 .item-page {
   margin-top: 50px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 70% 30%;
   justify-content: center;
   margin-left: 100px;
   margin-right: 100px;
@@ -8,10 +9,13 @@
 
 .item-page-info {
   display: flex;
-  width: 70%;
   border: 3px solid lightgray;
   box-shadow: 5px 5px 3px lightgray;
   align-items: center;
+}
+
+.item-page-sidebar h4 {
+  word-break: unset;
 }
 
 .item-page .item-page-info img {
@@ -24,19 +28,19 @@
 .item-page-sidebar {
   display: flex;
   flex-direction: column;
-  width: 10%;
   border: 3px solid lightgray;
   box-shadow: 5px 5px 3px lightgray;
   margin-left: 10%;
   justify-content: space-between;
+  padding: 35px;
 }
 
 .item-page-info .info-span {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .info-span * {
@@ -44,8 +48,6 @@
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  word-break: break-all;
-  /* width: 100%; */
 }
 
 .info-span span * {
@@ -83,13 +85,11 @@
 }
 
 .review-container {
-  display: flex;
-  flex-direction: column;
-  border: 3px solid lightgray;
-  box-shadow: 5px 5px 3px lightgray;
+  display: grid;
+  grid-template-columns: 70% 30%;
   margin-top: 100px;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .review {
@@ -178,4 +178,13 @@
 
 .review-container h2 {
   text-align: center;
+}
+
+.review-container h4 {
+  text-align: center;
+}
+
+.review-container-new-div {
+  border: 3px solid lightgray;
+  box-shadow: 5px 5px 3px lightgray;
 }

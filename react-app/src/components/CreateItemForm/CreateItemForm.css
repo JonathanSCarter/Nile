@@ -1,30 +1,35 @@
 .create-item-form {
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 2px solid lightgrey;
+  padding: 30px;
+  margin-bottom: 100px;
 }
 
 .create-item-form label {
   display: inline-flex;
-  font-size: large;
-  width: 10%;
+  font-size: medium;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .create-item-form-span {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   margin: 10px;
 }
 
 .create-item-form input {
-  width: 85%;
+  width: calc(100% - 20px);
   font-size: large;
+  padding: 10px;
 }
 
 .create-item-form button {

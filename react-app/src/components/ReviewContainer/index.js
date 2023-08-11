@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetReviews } from "../../store/review";
-import Review from "../../Review";
+import Review from "../Review";
 import CreateReview from "../CreateReview";
 import EditReview from "../EditReview";
 
@@ -36,19 +36,24 @@ function ReviewContainer({ id }) {
 
   return (
     <div className="review-container">
-      <h2>Reviews</h2>
-      {normalizedReviews.length
-        ? normalizedReviews.map((review) => {
+      <div className="review-container-new-div">
+        <h2>Reviews</h2>
+        {normalizedReviews.length ? (
+          normalizedReviews.map((review) => {
             return <Review review={review} />;
           })
-        : null}
-      {user ? (
-        isReview ? (
-          <EditReview review={userReview} id={id} />
         ) : (
-          <CreateReview id={id} />
-        )
-      ) : null}
+          <h4>There are no reviews for this item.</h4>
+        )}
+        {user ? (
+          isReview ? (
+            <EditReview review={userReview} id={id} />
+          ) : (
+            <CreateReview id={id} />
+          )
+        ) : null}
+      </div>
+        <div></div>
     </div>
   );
 }

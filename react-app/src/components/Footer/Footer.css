@@ -2,7 +2,7 @@
   display: flex;
   background-color: navy;
   color: white;
-  justify-content: space-around;
+  justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -15,4 +15,14 @@
 
 .footer a {
   color: white;
+  text-decoration: none;
+}
+
+.footer h4 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  word-break: unset;
 }

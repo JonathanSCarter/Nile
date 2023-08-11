@@ -3,17 +3,15 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="footer">
-      <h4>Built by Jonathan Carter, Aspiring Software Engineer</h4>
+      <h4>Built by Jonathan Carter <br/> Software Engineer</h4>
       <h4 className="link">
-        LinkedIn:{" "}
-        <a href="https://www.linkedin.com/in/jonathan-carter-12b600174/">
-          https://www.linkedin.com/in/jonathan-carter-12b600174/
+        <a target="_blank" href="https://www.linkedin.com/in/jonathan-carter-12b600174/">
+        LinkedIn
         </a>
       </h4>
       <h4 className="link">
-        Github:{" "}
-        <a href="https://github.com/JonathanSCarter">
-          https://github.com/JonathanSCarter
+        <a target="_blank" href="https://github.com/JonathanSCarter">
+        Github
         </a>
       </h4>
     </div>
