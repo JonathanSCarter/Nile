@@ -35,6 +35,12 @@ def post_to_cart():
     form = CartForm()
     form['csrf_token'].data = request.cookies.get('csrf_token')
     if form.validate_on_submit():
+      oldCart = Cart.query.filter(Cart.item_id == form.data.get("item_id")).first()
+      if oldCart:
+        oldCart.count += form.data.get("count")
+        db.session.commit()
+        carts = Cart.query.filter(Cart.user_id == current_user.id).filter(Cart.purchased == False).all()
+        return [cart.to_dict for cart in carts]
       cart = Cart()
       form.populate_obj(cart)
       cart.user_id = current_user.id

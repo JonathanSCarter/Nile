@@ -12,7 +12,7 @@ function CartButton() {
   const [normalizedCartItems, setNormalizedCartItems] = useState([...Object.values(cartItems)]);
   const history = useHistory()
   const [show, setShow] = useState(false)
-
+  const [numItems, setNumItems] = useState(0)
   const cartModalRef = useRef(null);
 
 
@@ -23,6 +23,12 @@ function CartButton() {
   useEffect(() => {
     setNormalizedCartItems([...Object.values(cartItems)]);
   }, [cartItems])
+
+  useEffect(() => {
+    let sum = 0
+    normalizedCartItems.forEach(item => sum += item.count)
+    setNumItems(sum)
+  }, [normalizedCartItems])
 
   const showCart = () => {
     setShow(!show)
@@ -47,7 +53,7 @@ function CartButton() {
 
   return (
     <>
-    <button onClick={showCart}>View Cart</button>
+    <button onClick={showCart} style={{ whiteSpace: 'pre-line' }}>View Cart {'\n'} {numItems} items</button>
     {show && (
       <div className="cart-modal" ref={cartModalRef}>
         {normalizedCartItems.length === 0 ? <p>Your Cart it Empty</p>: normalizedCartItems.slice(0, 5).map((cartItem) => {

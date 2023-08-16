@@ -160,7 +160,7 @@ function ItemPage() {
                         Item has been added to your cart! Would you like to go
                         to checkout?
                       </p>
-                      <button onClick={() => history.push("/cart")}>
+                      <button style={{marginLeft: "0px"}} onClick={() => history.push("/cart")}>
                         Go to Checkout
                       </button>
                     </div>
