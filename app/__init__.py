@@ -12,6 +12,17 @@ from .api.cart_routes import cart_routes
 from .api.review_routes import review_routes
 from .seeds import seed_commands
 from .config import Config
+from enum import Enum
+import logging
+import sys
+
+class LogLevel(Enum):
+    NOTSET = 0
+    DEBUG = 10
+    INFO = 20
+    WARN = 30
+    ERROR = 40
+    FATAL = 50
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -34,6 +45,15 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(item_routes, url_prefix='/api/items')
 app.register_blueprint(cart_routes, url_prefix='/api/carts')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
+
+log_formatter = logging.Formatter("%(levelname)-8.8s %(asctime)s: %(message)s")
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(log_formatter)
+file_handler = logging.FileHandler(filename=app.config['LOG_FILE'], mode='a')
+file_handler.setFormatter(log_formatter)
+logging.getLogger().addHandler(console_handler)
+logging.getLogger().addHandler(file_handler)
+logging.getLogger().setLevel(level=app.config['LOG_LEVEL'])
 
 db.init_app(app)
 Migrate(app, db)
