@@ -46,6 +46,7 @@ app.register_blueprint(item_routes, url_prefix='/api/items')
 app.register_blueprint(cart_routes, url_prefix='/api/carts')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 
+##sets up logging
 log_formatter = logging.Formatter("%(levelname)-8.8s %(asctime)s: %(message)s")
 console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(log_formatter)
