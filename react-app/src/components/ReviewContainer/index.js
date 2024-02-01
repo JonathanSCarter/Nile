@@ -20,11 +20,9 @@ function ReviewContainer({ id }) {
     if (user) {
       setUserId(user.id);
       if(ownerId != user.id) {
-        console.log('test');
         setIsOwner(false);
       } else setIsOwner(true);
     } else setUserId(null);
-    console.log(userId, ownerId, isOwner);
   }, [user]);
 
   useEffect(() => {
@@ -43,7 +41,6 @@ function ReviewContainer({ id }) {
     }
   }, [normalizedReviews, userId]);
 
-  console.log(user, isOwner, isReview, (user && !isOwner))
 
   return (
     <div className="review-container">
