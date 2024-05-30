@@ -4,3 +4,22 @@ INFO     2024-02-01 14:22:12,519: [33mPress CTRL+C to quit[0m
 INFO     2024-02-01 14:22:12,520:  * Restarting with stat
 WARNING  2024-02-01 14:22:13,036:  * Debugger is active!
 INFO     2024-02-01 14:22:13,036:  * Debugger PIN: 375-352-939
+INFO     2024-03-06 22:19:16,055: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO     2024-03-06 22:19:16,056: [33mPress CTRL+C to quit[0m
+INFO     2024-03-06 22:19:16,057:  * Restarting with stat
+WARNING  2024-03-06 22:19:16,591:  * Debugger is active!
+INFO     2024-03-06 22:19:16,593:  * Debugger PIN: 167-286-187
+INFO     2024-03-06 22:19:23,284: 127.0.0.1 - - [06/Mar/2024 22:19:23] "GET /api/auth/ HTTP/1.1" 200 -
+INFO     2024-03-06 22:19:23,572: BEGIN (implicit)
+INFO     2024-03-06 22:19:23,574: SELECT items.id AS items_id, items.seller AS items_seller, items.rating AS items_rating, items.price AS items_price, items.name AS items_name, items.discount AS items_discount, items.image AS items_image, items.description AS items_description, items.category AS items_category, items.seller_id AS items_seller_id 
+FROM items
+INFO     2024-03-06 22:19:23,574: [generated in 0.00029s] ()
+INFO     2024-03-06 22:19:23,578: ROLLBACK
+INFO     2024-03-06 22:19:23,579: 127.0.0.1 - - [06/Mar/2024 22:19:23] "GET /api/items/ HTTP/1.1" 200 -
+INFO     2024-03-07 08:28:13,797: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO     2024-03-07 08:28:13,798: [33mPress CTRL+C to quit[0m
+INFO     2024-03-07 08:28:13,799:  * Restarting with stat
+WARNING  2024-03-07 08:28:14,350:  * Debugger is active!
+INFO     2024-03-07 08:28:14,350:  * Debugger PIN: 167-286-187
